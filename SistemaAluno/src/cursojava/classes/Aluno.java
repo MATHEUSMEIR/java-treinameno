@@ -1,17 +1,19 @@
 package cursojava.classes;
 
-	//lasse que representa o aluno e seus dados
+import java.util.Objects;
+
+import cursojava.executavel.Disciplina;
+
+//lasse que representa o aluno e seus dados
 	public class Aluno {
 	
 		 //atributos do aluno
 		 public String nome;
 	     public int idade;
 	     public String numeroCpf;
-	     public String nomePai;
-	     private double nota1;
-	     private double nota2;
-	     private double nota3;
-	     private double nota4; 
+		public String nomePai;
+	     
+	     private Disciplina disciplina = new Disciplina();
 	     
 	     //Criar os dados na memoria sando padrão do JAVA
 	     //Construtor com parâmetros, objetos para o JAVA
@@ -27,6 +29,16 @@ package cursojava.classes;
 	    	 numeroCpf = numeroCpfPadrao;
 	    	 nomePai = nomePaiPadrao; 
 	     }
+	     
+	     //metodos SET e GET da disciplina
+	     public Disciplina getDisciplina() {
+			return disciplina;
+		}
+
+		public void setDisciplina(Disciplina disciplina) {
+			this.disciplina = disciplina;
+		}
+
 	     
 	     //Métodos SETTERS e GETTERS do objeto
 	    	     
@@ -62,42 +74,10 @@ package cursojava.classes;
 	     public String getNomePai() {
 	    	 return nomePai;	 
 	     }
-
-		public double getNota1() {
-			return nota1;
-		}
-
-		public void setNota1(double nota1) {
-			this.nota1 = nota1;
-		}
-
-		public double getNota2() {
-			return nota2;
-		}
-
-		public void setNota2(double nota2) {
-			this.nota2 = nota2;
-		}
-
-		public double getNota3() {
-			return nota3;
-		}
-
-		public void setNota3(double nota3) {
-			this.nota3 = nota3;
-		}
-
-		public double getNota4() {
-			return nota4;
-		}
-
-		public void setNota4(double nota4) {
-			this.nota4 = nota4;
-		}
      
 		//Método para retornar média do aluno
 		public double getMediaNota() {
-			return (nota1 + nota2 + nota3 + nota4)/4;
+			return (disciplina.getNota1() + disciplina.getNota2() + disciplina.getNota3() + disciplina.getNota4())/4;
 		}
 		
 		public String getSituacao() {
@@ -110,4 +90,30 @@ package cursojava.classes;
 	        	return "Reprovado";
 	        }
 	    }
+
+		@Override
+		public int hashCode() {
+			return Objects.hash(nome, numeroCpf);
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			Aluno other = (Aluno) obj;
+			return Objects.equals(nome, other.nome) && Objects.equals(numeroCpf, other.numeroCpf);
+		}
+
+		@Override
+		public String toString() {
+			return "Aluno [nome=" + nome + ", idade=" + idade + ", numeroCpf=" + numeroCpf + ", nomePai=" + nomePai
+					+ ", disciplina=" + disciplina + "]";
+		}
+
+		
+		
 }	
