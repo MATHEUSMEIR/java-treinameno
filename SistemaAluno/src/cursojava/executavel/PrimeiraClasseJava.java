@@ -47,7 +47,7 @@ public class PrimeiraClasseJava {
         aluno1.getDisciplinas().add(disciplina);
         }
 
-      //Escolha para remover alguma disciplina 
+       //Escolha para remover alguma disciplina 
        int escolha = JOptionPane.showConfirmDialog(null, "Desseja remover alguma disciplina?");
         
         if(escolha == 0){
@@ -66,28 +66,35 @@ public class PrimeiraClasseJava {
         
         
         alunos.add(aluno1);
-        }
-        
-        
+        }        
             
-	     /*if(aluno.getNome().equalsIgnoreCase("Matheus")){
-	     alunos.remove(aluno);
-	     break;
-	     }else{
-	     }*/
+        for (Aluno aluno : alunos){
+        	
+        if(aluno.getNome().equalsIgnoreCase("Matheus")){
+	    alunos.remove(aluno);
+	    break;
+		    }else{
+		    	/*Devolução de dados*/            
+				System.out.println("O aluno: " + aluno.getNome());
+				System.out.println("Idade: " + aluno.getIdade());
+				System.out.println("Cpf:" + aluno.getNumeroCpf());
+				System.out.println("Nome pai: " + aluno.getNomePai());
+				System.out.println("Média final: " + aluno.getMediaNota());
+				System.out.println("Está com situação final: " + aluno.getSituacao());
+				System.out.println("toString: " + aluno);
+		        System.out.println("disciplinas " + aluno.getDisciplinas());
+			  }
+	    }
         
-        
-	    for (Aluno aluno : alunos){
-        
-	    /*Devolução de dados*/            
-		System.out.println("O aluno: " + aluno.getNome());
-		System.out.println("Idade: " + aluno.getIdade());
-		System.out.println("Cpf:" + aluno.getNumeroCpf());
-		System.out.println("Nome pai: " + aluno.getNomePai());
-		System.out.println("Média final: " + aluno.getMediaNota());
-		System.out.println("Está com situação final: " + aluno.getSituacao());
-		System.out.println("toString: " + aluno);
-        System.out.println("disciplinas " + aluno.getDisciplinas());
-	   }
+        for (Aluno aluno : alunos){
+        	
+        	System.out.println("Alunos que sobraram na lisa");
+        	System.out.println(aluno.getMediaNota());
+        	System.out.println("Suas materias são:");
+        	
+        	for (Disciplina disciplina : aluno.getDisciplinas()) {
+        		System.out.println(disciplina.getDisciplina());
+        	}        	
+        }
 	}
 }
