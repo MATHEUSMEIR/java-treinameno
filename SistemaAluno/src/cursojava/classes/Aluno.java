@@ -6,8 +6,8 @@ import java.util.List;
 
 import cursojava.executavel.Disciplina;
 
-//lasse que representa o aluno e seus dados
-public class Aluno {
+//classe que representa o aluno e seus dados
+public class Aluno{
 
 	// atributos do aluno
 	public String nome;
@@ -81,19 +81,23 @@ public class Aluno {
 	// Método para retornar média do aluno
 	
 	  public double getMediaNota() { 
-	 	
 	 	double somaNota = 0.0;
 	  	for (Disciplina disciplina : disciplinas) {
 		 		 somaNota += disciplina.getNota();
-	 }
+	  	}
 	 
 	 return somaNota / disciplinas.size();
 	 
 	 }
 	  
-	  public String getSituacao() { double media = this.getMediaNota(); if (media
-	  >= 7.0) { return "Aprovado"; } else if (media >= 6.0) { return "Recuperação";
-	  } else { return "Reprovado"; } }
+	  public String getSituacao() { double media = this.getMediaNota(); 
+	  if (media >= 7.0) 
+	  	{ return "Aprovado"; } 
+	  else if (media >= 6.0) 
+	  	{ return "Recuperação";} 
+	  else 
+	  	{ return "Reprovado"; } 
+	  }
 	 
 
 	@Override
@@ -122,5 +126,4 @@ public class Aluno {
 		// TODO Auto-generated method stub
 		
 	}
-
 }
