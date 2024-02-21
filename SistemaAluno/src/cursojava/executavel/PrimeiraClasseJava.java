@@ -68,13 +68,13 @@ public class PrimeiraClasseJava {
         alunos.add(aluno1);
         }        
             
-        for (Aluno aluno : alunos){
+       /* for (Aluno aluno : alunos){
         	
         if(aluno.getNome().equalsIgnoreCase("Matheus")){
 	    alunos.remove(aluno);
 	    break;
 		    }else{
-		    	/*Devolução de dados*/            
+		    	Devolução de dados           
 				System.out.println("O aluno: " + aluno.getNome());
 				System.out.println("Idade: " + aluno.getIdade());
 				System.out.println("Cpf:" + aluno.getNumeroCpf());
@@ -89,12 +89,39 @@ public class PrimeiraClasseJava {
         for (Aluno aluno : alunos){
         	
         	System.out.println("Alunos que sobraram na lisa");
-        	System.out.println(aluno.getMediaNota());
+        	System.out.println(aluno.getNome());
         	System.out.println("Suas materias são:");
         	
         	for (Disciplina disciplina : aluno.getDisciplinas()) {
         		System.out.println(disciplina.getDisciplina());
-        	}        	
+        	}     	
+        }*/
+        
+        for (int pos = 0; pos < alunos.size(); pos++) {
+        	Aluno aluno = alunos.get(pos); 
+        	
+        	if (aluno.getNome().equalsIgnoreCase("Matheus")) {
+        		Aluno trocar = new Aluno();
+        		trocar.setNome("Aluno foi trocado");
+        		
+        		Disciplina disciplina = new Disciplina();
+        		disciplina.setDisciplina("Java");
+        		disciplina.setNota(9.1);
+        		
+        		trocar.getDisciplinas().add(disciplina);
+        		
+        		alunos.set(pos, trocar);
+        	}
+        	
+        	System.out.println("Aluno: "+ aluno.getNome());
+        	System.out.println("Média: "+ aluno.getMediaNota());
+        	System.out.println("Situação: "+ aluno.getSituacao());
+        	System.out.println("-------------------------------");
+        	
+	        for (int posDisc = 0; posDisc < aluno.getDisciplinas().size(); posDisc++) {
+	        	Disciplina dis = aluno.getDisciplinas().get(posDisc);
+	        	System.out.println("");
+	        }	
         }
+      }
 	}
-}
