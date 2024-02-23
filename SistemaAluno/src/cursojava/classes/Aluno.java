@@ -4,7 +4,8 @@ import java.util.Objects;
 import java.util.ArrayList;
 import java.util.List;
 
-import cursojava.executavel.Disciplina;
+import cursojava.constantes.StatusAluno;
+import cursojava.disciplina.Disciplina;
 
 //classe que representa o aluno e seus dados
 public class Aluno{
@@ -92,11 +93,11 @@ public class Aluno{
 	  
 	  public String getSituacao() { double media = this.getMediaNota(); 
 	  if (media >= 7.0) 
-	  	{ return "Aprovado"; } 
+	  	{ return StatusAluno.APROVADO; } 
 	  else if (media >= 6.0) 
-	  	{ return "Recuperação";} 
+	  	{ return StatusAluno.RECUPERACAO;} 
 	  else 
-	  	{ return "Reprovado"; } 
+	  	{ return StatusAluno.REPROVADO; } 
 	  }
 	 
 
