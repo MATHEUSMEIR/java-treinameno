@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 import cursojava.classes.Aluno;
 import cursojava.constantes.StatusAluno;
-import cursojava.disciplina.Disciplina;
+import cursojava.classes.Disciplina;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -117,7 +117,7 @@ public class PrimeiraClasseJava {
         
         System.out.println("---------------ALUNOS REPROVADOS------------------");
         for (Aluno aluno : maps.get(StatusAluno.REPROVADO)) {
-        System.out.println(aluno.nome + " ficou com situação final: "+ aluno.getSituacao() + " " + aluno.getMediaNota());
+        System.out.println(super.nome + " ficou com situação final: "+ aluno.getSituacao() + " " + aluno.getMediaNota());
         }
          
        /* for (Aluno aluno : alunos){
@@ -174,7 +174,7 @@ public class PrimeiraClasseJava {
 	        for (int posDisc = 0; posDisc < aluno.getDisciplinas().size(); posDisc++) {
 	        	Disciplina dis = aluno.getDisciplinas().get(posDisc);
 	        	System.out.println("");
-	        }	
+	        }
         }*/
       }
 	}

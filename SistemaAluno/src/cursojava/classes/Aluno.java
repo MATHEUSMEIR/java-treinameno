@@ -5,18 +5,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cursojava.constantes.StatusAluno;
-import cursojava.disciplina.Disciplina;
+import cursojava.classes.Disciplina;
 
 //classe que representa o aluno e seus dados
-public class Aluno{
+public class Aluno extends Pessoa{
 
 	// atributos do aluno
-	public String nome;
-	public int idade;
-	public String numeroCpf;
-	public String nomePai;
-
+	private String dataMatricula;
+	private String nomeEscola;
+	private String serieMatricula;
 	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
+	
+	
 	public int getNumDisciplina;
 
 	// Criar os dados na memoria sando padrão do JAVA
@@ -43,11 +43,11 @@ public class Aluno{
 		this.disciplinas = disciplinas;
 	}
 
-	// Métodos SETTERS e GETTERS do objeto
+	// Métodos SETTERS e GETTERS da super classe
 
 	/* SET é para adicionar ou receber os dados para os atributos */
 	public void setNome(String nome) {
-		this.nome = nome;
+		super.nome = nome;
 	}
 
 	/* GET é para resgatar ou obter o valor do atributo */
@@ -56,7 +56,7 @@ public class Aluno{
 	}
 
 	public void setIdade(int idade) {
-		this.idade = idade;
+		super.idade = idade;
 	}
 
 	public int getIdade() {
@@ -64,7 +64,7 @@ public class Aluno{
 	}
 
 	public void setNumeroCpf(String numeroCpf) {
-		this.numeroCpf = numeroCpf;
+		super.numeroCpf = numeroCpf;
 	}
 
 	public String getNumeroCpf() {
@@ -72,13 +72,38 @@ public class Aluno{
 	}
 
 	public void setNomePai(String nomePai) {
-		this.nomePai = nomePai;
+		super.nomePai = nomePai;
 	}
 
 	public String getNomePai() {
 		return nomePai;
 	}
+	
+	//SET E GET do objeto atual dentro da classe
+	  public String getDataMatricula() {
+		return dataMatricula;
+	}
 
+	public void setDataMatricula(String dataMatricula) {
+		this.dataMatricula = dataMatricula;
+	}
+
+	public String getNomeEscola() {
+		return nomeEscola;
+	}
+
+	public void setNomeEscola(String nomeEscola) {
+		this.nomeEscola = nomeEscola;
+	}
+
+	public String getSerieMatricula() {
+		return serieMatricula;
+	}
+
+	public void setSerieMatricula(String serieMatricula) {
+		this.serieMatricula = serieMatricula;
+	}
+	
 	// Método para retornar média do aluno
 	
 	  public double getMediaNota() { 
@@ -90,8 +115,8 @@ public class Aluno{
 	 return somaNota / disciplinas.size();
 	 
 	 }
-	  
-	  public String getSituacao() { double media = this.getMediaNota(); 
+
+	public String getSituacao() { double media = this.getMediaNota(); 
 	  if (media >= 7.0) 
 	  	{ return StatusAluno.APROVADO; } 
 	  else if (media >= 6.0) 
@@ -127,4 +152,6 @@ public class Aluno{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
 }
