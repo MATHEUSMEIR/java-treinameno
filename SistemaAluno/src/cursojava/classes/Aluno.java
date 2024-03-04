@@ -16,7 +16,6 @@ public class Aluno extends Pessoa{
 	private String serieMatricula;
 	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 	
-	
 	public int getNumDisciplina;
 
 	// Criar os dados na memoria sando padrão do JAVA
@@ -151,6 +150,12 @@ public class Aluno extends Pessoa{
 	public void setNumDisciplina(Integer valueOf) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public double Salario() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	

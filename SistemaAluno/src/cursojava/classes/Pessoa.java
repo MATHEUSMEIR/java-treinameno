@@ -1,6 +1,7 @@
 package cursojava.classes;
 
-public class Pessoa {
+//Super Classe 
+public abstract class Pessoa {
 
 	protected String nome;
 	protected int idade;
@@ -9,6 +10,9 @@ public class Pessoa {
 	protected String numeroCpf;
 	protected String nomeMae;
 	protected String nomePai;
+	
+	//Método abstract é obrigatório para as classes filhas
+	public abstract double Salario();
 	
 	//SETTERS E GETTERS
 	public String getNome() {
@@ -52,5 +56,13 @@ public class Pessoa {
 	}
 	public void setNomePai(String nomePai) {
 		this.nomePai = nomePai;
+		
+	//to string 
+	}
+	
+	@Override
+	public String toString() {
+		return "Pessoa [nome=" + nome + ", idade=" + idade + ", dataNascimento=" + dataNascimento + ", registroGeral="
+				+ registroGeral + ", numeroCpf=" + numeroCpf + ", nomeMae=" + nomeMae + ", nomePai=" + nomePai + "]";
 	}
 }

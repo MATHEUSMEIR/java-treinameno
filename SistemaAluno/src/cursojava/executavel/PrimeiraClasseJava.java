@@ -5,6 +5,8 @@ import javax.swing.JOptionPane;
 import cursojava.classes.Aluno;
 import cursojava.constantes.StatusAluno;
 import cursojava.classes.Disciplina;
+import cursojava.classes.Secretario;
+import cursojava.interfaces.PermitirAcesso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,11 +17,15 @@ public class PrimeiraClasseJava {
 
 	/* Main é um método auto executavel no JAVA */
 	public static void main(String[] args) {
-		// TODO code application logic here
 		
+		//Variavel de login e senha para usuario acessar o cóodigo
 		String login = JOptionPane.showInputDialog("Informe o login");
 		String senha = JOptionPane.showInputDialog("Informe a senha");
 		
+		//Condição para permitir acesso do secretário
+		if(new Secretario().autenticar(login, senha)) { //if TRUE acesso liberado
+		
+		//Condição para verficar login e senha
 		if (login.equalsIgnoreCase("admin") && senha.equalsIgnoreCase("admin")){
 		
 		//Lista para junção dos alunos em um Array
@@ -33,27 +39,29 @@ public class PrimeiraClasseJava {
         
         List<Aluno> alunosReprovado = new ArrayList<Aluno>();*/
         
+        //loop de repetição para saber quantos alunos serão calculados
         for (int qtd = 1; qtd <= 1; qtd++){
 	    
 	    /* Processamento de dados e atribuição ao objeto */
 	    String nome = JOptionPane.showInputDialog("Qual o nome do aluno "+qtd+"? ");
 	    String idade =JOptionPane.showInputDialog("Qual a idade? ");
-	    /*String numeroCpf = JOptionPane.showInputDialog("Qual o número de CPF? ");
-	    String nomePai = JOptionPane.showInputDialog("Qual o nome do pai? ");*/
+	    String numeroCpf = JOptionPane.showInputDialog("Qual o número de CPF? ");
+	    String nomePai = JOptionPane.showInputDialog("Qual o nome do pai? ");
 	    
 		// Objeto existe na memoria, instancia//
 		cursojava.classes.Aluno aluno1 = new cursojava.classes.Aluno();
 
 		aluno1.setNome(nome);
 		aluno1.setIdade(Integer.valueOf(idade));
-		/*aluno1.setNumeroCpf(numeroCpf);
-		aluno1.setNomePai(nomePai);*/
+		aluno1.setNumeroCpf(numeroCpf);
+		aluno1.setNomePai(nomePai);
 		
 		//Quantidade de disciplina que sera inserido
         for(int cont = 1; cont < 3; cont++){
             
         String nomeDisciplina = JOptionPane.showInputDialog("Nome da disciplina "+cont+": ");
         String notaDisciplina = JOptionPane.showInputDialog("Nota obtida "+cont+": ");
+        
 		/*Objeto existe na memoria**/
         Disciplina disciplina = new Disciplina();
      
@@ -80,7 +88,6 @@ public class PrimeiraClasseJava {
             }
         }
         
-        
         alunos.add(aluno1);
         }  
         
@@ -92,32 +99,28 @@ public class PrimeiraClasseJava {
         for (Aluno aluno : alunos) {
 			if(aluno.getSituacao().equalsIgnoreCase(StatusAluno.APROVADO)) {
 				maps.get(StatusAluno.APROVADO).add(aluno);
-				//alunosAprovado.add(aluno);
 			}
 			else if(aluno.getSituacao().equalsIgnoreCase(StatusAluno.RECUPERACAO)) {
 				maps.get(StatusAluno.RECUPERACAO).add(aluno);
-				//alunosRecuperacao.add(aluno);
 			}
 			else {
 				maps.get(StatusAluno.REPROVADO).add(aluno);
-				//alunosReprovado.add(aluno);
 			}
-				
 		}
         
         System.out.println("---------------ALUNOS APROVADOS------------------");
         for (Aluno aluno : maps.get(StatusAluno.APROVADO)) {
-        System.out.println(aluno.nome + " ficou com situação final: "+ aluno.getSituacao() + " " + aluno.getMediaNota());
+        System.out.println(aluno.getNome() + " ficou com situação final: "+ aluno.getSituacao() + " " + aluno.getMediaNota());
         }
         
         System.out.println("---------------ALUNOS RECUPERAÇÃO------------------");
         for (Aluno aluno : maps.get(StatusAluno.RECUPERACAO)) {
-        System.out.println(aluno.nome + " ficou com situação final: "+ aluno.getSituacao() + " " + aluno.getMediaNota());
+        System.out.println(aluno.getNome() + " ficou com situação final: "+ aluno.getSituacao() + " " + aluno.getMediaNota());
         }
         
         System.out.println("---------------ALUNOS REPROVADOS------------------");
         for (Aluno aluno : maps.get(StatusAluno.REPROVADO)) {
-        System.out.println(super.nome + " ficou com situação final: "+ aluno.getSituacao() + " " + aluno.getMediaNota());
+        System.out.println(aluno.getNome() + " ficou com situação final: "+ aluno.getSituacao() + " " + aluno.getMediaNota());
         }
          
        /* for (Aluno aluno : alunos){
@@ -177,5 +180,9 @@ public class PrimeiraClasseJava {
 	        }
         }*/
       }
+	}
+		else {
+			JOptionPane.showMessageDialog(null, "Acesso Negado");
+		}
 	}
 }
