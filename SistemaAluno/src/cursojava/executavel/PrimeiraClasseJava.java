@@ -1,43 +1,37 @@
 package cursojava.executavel;
 
-import javax.swing.JOptionPane;
-
-import cursojava.classes.Aluno;
-import cursojava.constantes.StatusAluno;
-import cursojava.classes.Disciplina;
-import cursojava.classes.Secretario;
-import cursojava.interfaces.PermitirAcesso;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
+
+import javax.swing.JOptionPane;
+
+import cursojava.classes.Aluno;
+import cursojava.classes.Disciplina;
+import cursojava.classes.Secretario;
+import cursojava.classesauxiliares.FuncaoAutenticacao;
+import cursojava.constantes.StatusAluno;
 
 public class PrimeiraClasseJava {
 
 	/* Main é um método auto executavel no JAVA */
 	public static void main(String[] args) {
 		
+		//Erro no Sistema entra aqui
+		try {
+		
 		//Variavel de login e senha para usuario acessar o cóodigo
 		String login = JOptionPane.showInputDialog("Informe o login");
 		String senha = JOptionPane.showInputDialog("Informe a senha");
 		
+		//travar somente para quem for autorizado 
 		//Condição para permitir acesso do secretário
-		if(new Secretario().autenticar(login, senha)) { //if TRUE acesso liberado
-		
-		//Condição para verficar login e senha
-		if (login.equalsIgnoreCase("admin") && senha.equalsIgnoreCase("admin")){
-		
+		if(new FuncaoAutenticacao(new Secretario(login, senha)).autenticar()) { //if TRUE acesso liberado
+				
 		//Lista para junção dos alunos em um Array
         List<Aluno> alunos = new ArrayList<Aluno>();
         
         HashMap<String, List<Aluno>> maps = new HashMap<String, List<Aluno>>();
-        
-        /*List<Aluno> alunosAprovado = new ArrayList<Aluno>();
-        
-        List<Aluno> alunosRecuperacao = new ArrayList<Aluno>();
-        
-        List<Aluno> alunosReprovado = new ArrayList<Aluno>();*/
         
         //loop de repetição para saber quantos alunos serão calculados
         for (int qtd = 1; qtd <= 1; qtd++){
@@ -62,7 +56,7 @@ public class PrimeiraClasseJava {
         String nomeDisciplina = JOptionPane.showInputDialog("Nome da disciplina "+cont+": ");
         String notaDisciplina = JOptionPane.showInputDialog("Nota obtida "+cont+": ");
         
-		/*Objeto existe na memoria**/
+		/*Objeto Disciplina existe na memoria**/
         Disciplina disciplina = new Disciplina();
      
         disciplina.setDisciplina(nomeDisciplina);
@@ -88,6 +82,7 @@ public class PrimeiraClasseJava {
             }
         }
         
+        //adicionando aluno
         alunos.add(aluno1);
         }  
         
@@ -122,67 +117,28 @@ public class PrimeiraClasseJava {
         for (Aluno aluno : maps.get(StatusAluno.REPROVADO)) {
         System.out.println(aluno.getNome() + " ficou com situação final: "+ aluno.getSituacao() + " " + aluno.getMediaNota());
         }
-         
-       /* for (Aluno aluno : alunos){
-        	
-        if(aluno.getNome().equalsIgnoreCase("Matheus")){
-	    alunos.remove(aluno);
-	    break;
-		    }else{
-		    	Devolução de dados           
-				System.out.println("O aluno: " + aluno.getNome());
-				System.out.println("Idade: " + aluno.getIdade());
-				System.out.println("Cpf:" + aluno.getNumeroCpf());
-				System.out.println("Nome pai: " + aluno.getNomePai());
-				System.out.println("Média final: " + aluno.getMediaNota());
-				System.out.println("Está com situação final: " + aluno.getSituacao());
-				System.out.println("toString: " + aluno);
-		        System.out.println("disciplinas " + aluno.getDisciplinas());
-			  }
-	    }
-        
-        for (Aluno aluno : alunos){
-        	
-        	System.out.println("Alunos que sobraram na lisa");
-        	System.out.println(aluno.getNome());
-        	System.out.println("Suas materias são:");
-        	
-        	for (Disciplina disciplina : aluno.getDisciplinas()) {
-        		System.out.println(disciplina.getDisciplina());
-        	}     	
-        }*/
-        
-        /*for (int pos = 0; pos < alunos.size(); pos++) {
-        	Aluno aluno = alunos.get(pos); 
-        	
-        	if (aluno.getNome().equalsIgnoreCase("Matheus")) {
-        		Aluno trocar = new Aluno();
-        		trocar.setNome("Aluno foi trocado");
-        		
-        		Disciplina disciplina = new Disciplina();
-        		disciplina.setDisciplina("Java");
-        		disciplina.setNota(9.1);
-        		
-        		trocar.getDisciplinas().add(disciplina);
-        		
-        		alunos.set(pos, trocar);
-        		aluno = alunos.get(pos);
-        	}
-        	
-        	System.out.println("Aluno: "+ aluno.getNome());
-        	System.out.println("Média: "+ aluno.getMediaNota());
-        	System.out.println("Situação: "+ aluno.getSituacao());
-        	System.out.println("-------------------------------");
-        	
-	        for (int posDisc = 0; posDisc < aluno.getDisciplinas().size(); posDisc++) {
-	        	Disciplina dis = aluno.getDisciplinas().get(posDisc);
-	        	System.out.println("");
-	        }
-        }*/
       }
-	}
+		//Caso o login ou senha esteja errado 
 		else {
 			JOptionPane.showMessageDialog(null, "Acesso Negado");
+		}
+		//Exception no Sistema
+		}catch(Exception e) {
+
+			StringBuilder saida = new StringBuilder(); 
+			
+			e.printStackTrace();//Imprime erro no console
+			System.out.println("Menssagem ou causa do erro: " + e.getMessage());
+			
+			//For para mostrar Class, Metodo e Linha do erro
+			for(int cont =0; cont <= e.getStackTrace().length; cont++) {
+				saida.append("/n Class do erro: " + e.getStackTrace()[cont].getClassName());
+				saida.append("/n Metodo do erro: " + e.getStackTrace()[cont].getMethodName());
+				saida.append("/n Linha do erro: " + e.getStackTrace()[cont].getLineNumber());
+				saida.append("/n Nome do erro: " + e.getClass().getName());
+			}
+			
+			JOptionPane.showMessageDialog(null, saida.toString());
 		}
 	}
 }

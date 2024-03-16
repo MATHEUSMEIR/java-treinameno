@@ -8,6 +8,5 @@ public class TestandoClasse {
 		
 		Aluno aluno = new Aluno();
 		aluno.setNome("Matheus ");
-		
 	}
 }
